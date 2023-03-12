@@ -6,25 +6,45 @@ import './index.css';
 //CLASSE BOARD - GENITORE -
 
 class Board extends React.Component {
-    // sospeso x = 1;
-    //creo il costruttore per mantere in board lo stato del padre e dei figli
+    /* sospeso x = 1;
+    creo il costruttore per mantere in board lo stato del padre e dei figli
+    @CODICE---> 09_stato_in_Square = costruisco un costruttore
+                per ricordare lo stato del clcick dello square quindi elevo lo stato
+                da Square a board.
+
+
+     */
+
+    //09_stato_in_Square
     constructor(props) {
         super(props);
         this.state = {
-            //imposto 9 nulli con l'array mediante fill
+            //imposto 9 null con l'array mediante fill
             squares: Array(9).fill(null),
         };
     }
 
-
+    /*  @CODICE---> 09_02_Modifico_METODO_RenderSquare = Modifichiamo Board per inviare un PROPS a SQUARE in modo
+                        che riceva il valore corrente X, O o null per ogni square, e visto che IL COSTRUTTORE DI BOARD
+                        è stato modificato viene anche modificato il METODO RenderSquare di Board facendo si che
+                        possa leggere l'array
+    */
     renderSquare(i) {
         return (
             <Square
+                /*  @CODICE---> 09_04_Modifico_METODO_RenderSquare_PROPS_FUNZIONE = Per informare Board quando uno
+                    square è cliccato modifichiamo la funzione Square, con la quale INVIAMO  A Modifichiamo Board per inviare un PROPS a SQUARE in modo
+                        che riceva il valore corrente X, O o null per ogni square, e visto che IL COSTRUTTORE DI BOARD
+                        è stato modificato viene anche modificato il METODO RenderSquare di Board facendo si che
+                        possa leggere l'array
+    */
+                //@CODICE---> 09_02_stato_in_Square
                 value={this.state.squares[i]}
                 onClick={() => this.handleClick(i)}
             />
         );
     }
+
 
 
     render() {
@@ -60,7 +80,8 @@ class Board extends React.Component {
 class Square extends React.Component {
     /*HO inserito in costruttore per modificare lo stato, in quanto
     * i props sono proprieta di sola lettura. Quindi se si vuole modificare
-    * le props occorre creare un oggetto */
+    * le props occorre creare un oggetto
+    * */
     constructor(props) {
         super(props);
         this.state = {value: null,};
